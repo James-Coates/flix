@@ -1,0 +1,8 @@
+@import './styles/reset.scss';
+@import './styles/variables.scss';
+@import './styles/typography.scss';
+@import './styles/forms.scss';
+
+body {
+  background-color: $color-main;
+}

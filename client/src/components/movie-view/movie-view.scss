@@ -1,0 +1,62 @@
+@import "../../styles/variables.scss";
+
+.movie-view {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.movie-view__imageBox {
+  width: 100%;
+  padding-bottom: 4rem;
+}
+
+.movie-view__image {
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+  box-shadow: 0 0 10px black;
+}
+
+.movie-view__title {
+  font-size: 3rem;
+  text-transform: uppercase;
+  padding-bottom: 0.8rem;
+}
+
+.movie-view__genre {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  color: $color-main-light;
+  padding-bottom: 1.6rem;
+}
+
+.movie-view__description {
+  color: $color-main-light;
+  padding-bottom: 1.6rem;
+}
+
+.movie-view__director {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  color: $color-main-light;
+  &::before {
+    content: 'Directed by '
+  }
+}
+
+@media screen and (min-width: 512px) {
+  .movie-view {
+    width: 75%;
+    margin: 0 auto;
+  }
+  .movie-view__imageBox {
+    width: 30%;
+    margin-right: 5rem;
+  }
+  .movie-view__body {
+    flex: 1;
+    padding-top: 5rem;
+  }
+}

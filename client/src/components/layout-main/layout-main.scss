@@ -1,0 +1,15 @@
+@import "../../styles/variables.scss";
+
+.wrapper-main {
+  width: 100%;
+  min-height: 100vh;
+  padding: 15rem 1rem;
+}
+
+@media screen and (min-width: 512px) {
+  .wrapper-main {
+    padding-left: 12rem;
+    padding-right: 2rem;
+    padding-top: 10rem;
+  }
+}

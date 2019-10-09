@@ -1,0 +1,42 @@
+@import "../../styles/variables.scss";
+
+.movie-card {
+  width: 100%;
+  margin-bottom: 4rem;
+}
+
+.movie-card__image-cont {
+  width: 100%;
+  box-shadow: 0 0 10px rgba(black, 1);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-card__image {
+  width: 100%;
+}
+
+.movie-card__body {
+  padding-top: 2rem
+}
+
+.movie-card__title {
+  font-size: 1.6rem;
+  color: $color-gray;
+  width: 100%;
+  text-shadow: 0 0 10px rgba(black, 1);
+  text-transform: uppercase;
+}
+
+
+@media screen and (min-width: 512px) {
+  .movie-card {
+    width: 20%;
+    padding: 2rem;
+  }
+  .movie-card__image-cont {
+    height: calc((100vw / 4 - 120px) * 1.2);
+  }
+}

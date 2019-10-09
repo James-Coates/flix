@@ -1,0 +1,36 @@
+@import './variables.scss';
+
+.form-input {
+  font-size: 1.8rem;
+  padding: 1rem 2rem;
+  width: 100%;
+  margin-bottom: 2rem;
+  background-color: transparent;
+  color: $color-white;
+  border: 1px solid $color-main-light;
+  transition: all 0.3s;
+  &::placeholder {
+    color: $color-main-light;
+  }
+  &:focus {
+    border: 1px solid $color-secondary;
+    box-shadow: 0 0 2px $color-secondary;
+    outline: none;
+  }
+}
+
+button, .button {
+  display: block;
+  padding: 1rem 5rem;
+  border-radius: 3px;
+  min-width: 20rem;
+  margin-bottom: 2rem;
+}
+
+.button-primary {
+  background-color: $color-secondary;
+
+}
+
+.button-secondary {
+}

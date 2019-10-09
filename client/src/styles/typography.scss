@@ -1,0 +1,21 @@
+@import './variables.scss';
+
+body, div, p, button, form, input {
+  font-family: $font-body;
+  color: $color-white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-head;
+  color: $color-white;
+}
+
+p, div, form, input {
+  font-size: 1.6rem;
+}
+
+.page-header {
+  color: $color-main-light;
+  font-size: 2.2rem;
+  padding-bottom: 2rem;
+}
