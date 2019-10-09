@@ -38301,7 +38301,34 @@ if ("development" !== "production") {
     style: _propTypes.default.object
   });
 }
-},{"react-router":"../node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"../node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"../node_modules/react/index.js","history":"../node_modules/history/esm/history.js","prop-types":"../node_modules/prop-types/index.js","tiny-warning":"../node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"../node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"../node_modules/axios/lib/helpers/bind.js":[function(require,module,exports) {
+},{"react-router":"../node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"../node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"../node_modules/react/index.js","history":"../node_modules/history/esm/history.js","prop-types":"../node_modules/prop-types/index.js","tiny-warning":"../node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"../node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"../src/actions/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setMovies = setMovies;
+exports.setFilter = setFilter;
+exports.SET_FILTER = exports.SET_MOVIES = void 0;
+const SET_MOVIES = 'SET_MOVIES';
+exports.SET_MOVIES = SET_MOVIES;
+const SET_FILTER = 'SET_FILTER';
+exports.SET_FILTER = SET_FILTER;
+
+function setMovies(value) {
+  return {
+    type: SET_MOVIES,
+    value
+  };
+}
+
+function setFilter(value) {
+  return {
+    type: SET_FILTER,
+    value
+  };
+}
+},{}],"../node_modules/axios/lib/helpers/bind.js":[function(require,module,exports) {
 'use strict';
 
 module.exports = function bind(fn, thisArg) {
@@ -56000,7 +56027,47 @@ function Layout({
     className: "wrapper-main"
   }, _react.default.createElement(_header.default, null), children);
 }
-},{"react":"../node_modules/react/index.js","../header":"../src/components/header/index.jsx","../footer":"../src/components/footer/index.jsx","./layout-main.scss":"../src/components/layout-main/layout-main.scss"}],"../src/components/filter-bar/filter-bar.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../header":"../src/components/header/index.jsx","../footer":"../src/components/footer/index.jsx","./layout-main.scss":"../src/components/layout-main/layout-main.scss"}],"../src/components/search-filter/index.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactRedux = require("react-redux");
+
+var _actions = require("../../actions");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const mapStateToProps = state => {
+  const {
+    visibilityFilter
+  } = state;
+  return {
+    visibilityFilter
+  };
+};
+
+function SearchFilter(props) {
+  return _react.default.createElement("input", {
+    type: "search",
+    className: "search",
+    placeholder: "Seach...",
+    onChange: e => props.setFilter(e.target.value),
+    value: props.visibilityFilter
+  });
+}
+
+var _default = (0, _reactRedux.connect)(mapStateToProps, {
+  setFilter: _actions.setFilter
+})(SearchFilter);
+
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","../../actions":"../src/actions/index.js"}],"../src/components/filter-bar/filter-bar.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -56015,6 +56082,8 @@ exports.default = filterBar;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _searchFilter = _interopRequireDefault(require("../search-filter"));
+
 require("./filter-bar.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -56022,16 +56091,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function filterBar() {
   return _react.default.createElement("div", {
     className: "filter-bar"
-  }, _react.default.createElement("input", {
-    type: "search",
-    className: "search",
-    placeholder: "Seach..."
-  }), _react.default.createElement("select", {
+  }, _react.default.createElement(_searchFilter.default, null), _react.default.createElement("select", {
     type: "dr",
     className: "filter"
   }, _react.default.createElement("option", null, "1"), _react.default.createElement("option", null, "2"), _react.default.createElement("option", null, "3")));
 }
-},{"react":"../node_modules/react/index.js","./filter-bar.scss":"../src/components/filter-bar/filter-bar.scss"}],"../src/components/movie-card/movie-card.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../search-filter":"../src/components/search-filter/index.jsx","./filter-bar.scss":"../src/components/filter-bar/filter-bar.scss"}],"../src/components/movie-card/movie-card.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -56076,7 +56141,21 @@ function MovieCard({
     className: "movie-card__title"
   }, title)));
 }
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./movie-card.scss":"../src/components/movie-card/movie-card.scss"}],"../src/components/movie-list/movie-list.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./movie-card.scss":"../src/components/movie-card/movie-card.scss"}],"../src/components/movie-list/methods.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.filterMovies = void 0;
+
+const filterMovies = (movieArray, query) => {
+  const lcQuery = query.toLowerCase();
+  return movieArray.filter(movie => movie.title.toLowerCase().includes(lcQuery));
+};
+
+exports.filterMovies = filterMovies;
+},{}],"../src/components/movie-list/movie-list.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -56087,31 +56166,50 @@ module.hot.accept(reloadCSS);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = MovieList;
+exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
+
+var _reactRedux = require("react-redux");
 
 var _filterBar = _interopRequireDefault(require("../filter-bar"));
 
 var _movieCard = _interopRequireDefault(require("../movie-card"));
 
+var _methods = require("./methods");
+
 require("./movie-list.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+const mapStateToProps = state => {
+  const {
+    visibilityFilter
+  } = state;
+  return {
+    visibilityFilter
+  };
+};
+
 function MovieList({
-  movies
+  movies,
+  visibilityFilter
 }) {
+  const filteredMovies = (0, _methods.filterMovies)(movies, visibilityFilter);
   return _react.default.createElement("div", null, _react.default.createElement(_filterBar.default, null), _react.default.createElement("h2", {
     className: "page-header"
   }, "MOVIES"), _react.default.createElement("div", {
     className: "movie-list"
-  }, movies.map(movie => _react.default.createElement(_movieCard.default, {
+  }, filteredMovies.map(movie => _react.default.createElement(_movieCard.default, {
     movie: movie,
     key: movie._id
   }))));
 }
-},{"react":"../node_modules/react/index.js","../filter-bar":"../src/components/filter-bar/index.jsx","../movie-card":"../src/components/movie-card/index.jsx","./movie-list.scss":"../src/components/movie-list/movie-list.scss"}],"../src/components/layout-form/layout-form.scss":[function(require,module,exports) {
+
+var _default = (0, _reactRedux.connect)(mapStateToProps)(MovieList);
+
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","../filter-bar":"../src/components/filter-bar/index.jsx","../movie-card":"../src/components/movie-card/index.jsx","./methods":"../src/components/movie-list/methods.js","./movie-list.scss":"../src/components/movie-list/movie-list.scss"}],"../src/components/layout-form/layout-form.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -56490,6 +56588,10 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
 
+var _reactRedux = require("react-redux");
+
+var _actions = require("../../actions");
+
 var _api = require("./api");
 
 var _layoutMain = _interopRequireDefault(require("../layout-main"));
@@ -56509,32 +56611,27 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 class MainView extends _react.Component {
-  constructor() {
-    super();
-    this.state = {
-      movies: []
-    };
-  }
-
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     movies: [],
+  //   };
+  // }
   async componentDidMount() {
     const accessToken = localStorage.getItem('token');
-    const movies = await (0, _api.getMovies)(accessToken);
-    this.setState({
-      movies
-    });
-  }
+    const movies = await (0, _api.getMovies)(accessToken); // this.setState({ movies });
 
-  async onLogin(accessToken) {
-    const movies = await (0, _api.getMovies)(accessToken);
-    this.setState({
-      movies
-    });
-  }
+    this.props.setMovies(movies);
+  } // async onLogin(accessToken) {
+  //   const movies = await getMovies(accessToken);
+  //   this.setState({ movies });
+  // }
+
 
   render() {
     const {
       movies
-    } = this.state;
+    } = this.props;
     return _react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement(_reactRouterDom.Switch, null, _react.default.createElement(_reactRouterDom.Route, {
       exact: true,
       path: "/"
@@ -56560,35 +56657,18 @@ class MainView extends _react.Component {
 
 }
 
-exports.default = MainView;
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./api":"../src/components/main-view/api.js","../layout-main":"../src/components/layout-main/index.jsx","../movie-list":"../src/components/movie-list/index.jsx","../login-view":"../src/components/login-view/index.jsx","../signup-view":"../src/components/signup-view/index.jsx","../movie-view":"../src/components/movie-view/index.jsx"}],"../src/actions/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.setMovies = setMovies;
-exports.setFilter = setFilter;
-exports.SET_FILTER = exports.SET_MOVIES = void 0;
-const SET_MOVIES = 'SET_MOVIES';
-exports.SET_MOVIES = SET_MOVIES;
-const SET_FILTER = 'SET_FILTER';
-exports.SET_FILTER = SET_FILTER;
-
-function setMovies(value) {
+const mapStateToProps = state => {
   return {
-    type: SET_MOVIES,
-    value
+    movies: state.movies
   };
-}
+};
 
-function setFilter(value) {
-  return {
-    type: SET_FILTER,
-    value
-  };
-}
-},{}],"../src/reducers/index.js":[function(require,module,exports) {
+var _default = (0, _reactRedux.connect)(mapStateToProps, {
+  setMovies: _actions.setMovies
+})(MainView);
+
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-redux":"../node_modules/react-redux/es/index.js","../../actions":"../src/actions/index.js","./api":"../src/components/main-view/api.js","../layout-main":"../src/components/layout-main/index.jsx","../movie-list":"../src/components/movie-list/index.jsx","../login-view":"../src/components/login-view/index.jsx","../signup-view":"../src/components/signup-view/index.jsx","../movie-view":"../src/components/movie-view/index.jsx"}],"../src/reducers/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

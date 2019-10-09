@@ -4,3 +4,5 @@ server/node_modules
 .vscode
 .DS_Store
 .gitignore
+client/.cache
+client/dist

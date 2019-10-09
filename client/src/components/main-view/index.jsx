@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { setMovies } from '../../actions';
 
 import { getMovies } from './api';
 
@@ -9,27 +12,28 @@ import LoginView from '../login-view';
 import SignupView from '../signup-view';
 import MovieView from '../movie-view';
 
-export default class MainView extends Component {
-  constructor() {
-    super();
-    this.state = {
-      movies: [],
-    };
-  }
+class MainView extends Component {
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     movies: [],
+  //   };
+  // }
 
   async componentDidMount() {
     const accessToken = localStorage.getItem('token');
     const movies = await getMovies(accessToken);
-    this.setState({ movies });
+    // this.setState({ movies });
+    this.props.setMovies(movies);
   }
 
-  async onLogin(accessToken) {
-    const movies = await getMovies(accessToken);
-    this.setState({ movies });
-  }
+  // async onLogin(accessToken) {
+  //   const movies = await getMovies(accessToken);
+  //   this.setState({ movies });
+  // }
 
   render() {
-    const { movies } = this.state;
+    const { movies } = this.props;
     return (
       <Router>
         <Switch>
@@ -51,3 +55,9 @@ export default class MainView extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return { movies: state.movies };
+};
+
+export default connect(mapStateToProps, { setMovies })(MainView);
