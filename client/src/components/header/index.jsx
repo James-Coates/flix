@@ -7,6 +7,7 @@ import NavButton from '../nav-button';
 import './header.scss';
 
 export default function Header() {
+  const logOut = () => localStorage.clear();
   return (
     <div className="header">
       <div className="header-logo">
@@ -17,7 +18,7 @@ export default function Header() {
       <div className="menu">
         <NavButton title="Sign in" link="/login" />
         <NavButton title="Sign up" link="/signup" />
-        {/* <NavButton title="Sign out" /> */}
+        <NavButton title="Sign out" action={logOut} />
       </div>
     </div>
   );
