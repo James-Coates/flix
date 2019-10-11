@@ -3,8 +3,9 @@ const passport = require('passport');
 const { movieController } = require('../controllers');
 
 const router = express.Router();
+const authentication = passport.authenticate('jwt', { session: false });
 
-router.get('/', passport.authenticate('jwt', { session: false }), movieController.getMovies);
-router.get('/:title', passport.authenticate('jwt', { session: false }), movieController.getMovie);
+router.get('/', authentication, movieController.getMovies);
+router.get('/:title', authentication, movieController.getMovie);
 
 module.exports = router;

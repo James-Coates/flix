@@ -10,6 +10,20 @@ module.exports.getUsers = async (req, res) => {
   }
 };
 
+module.exports.getUser = async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+    const { username } = req.params;
+    const { status, response } = await userService.getUser(username);
+    return res.status(status).json(response);
+  } catch (err) {
+    return res.status(500).send(`Error: ${err}`);
+  }
+};
+
 module.exports.addUser = async (req, res) => {
   try {
     const errors = validationResult(req);

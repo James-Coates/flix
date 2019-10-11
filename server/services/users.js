@@ -9,6 +9,14 @@ module.exports.getUsers = async () => {
   return { status: 200, response: users };
 };
 
+module.exports.getUser = async (username) => {
+  const user = await User.find({ username });
+  if (!user || !user.length) {
+    return { status: 404, response: 'No user found' };
+  }
+  return { status: 200, response: user };
+};
+
 module.exports.addUser = async (newUser) => {
   const { username, password, email, birthday } = newUser;
   const hashedPassword = User.hashPassword(password);

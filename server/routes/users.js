@@ -1,14 +1,17 @@
 const express = require('express');
-const userController = require('../controllers/users');
+const passport = require('passport');
 
+const userController = require('../controllers/users');
 const validationMiddleware = require('../middleware/validation');
+const authentication = passport.authenticate('jwt', { session: false });
 
 const router = express.Router();
 
 router.get('/', userController.getUsers);
-router.post('/', validationMiddleware.userDetails, userController.addUser);
-router.put('/:username', validationMiddleware.userDetails, userController.editUser);
-router.post('/:username/movies/:title', userController.addFavouriteMovie);
-router.delete('/:username', userController.deleteUser);
+router.get('/:username', authentication, userController.getUser);
+router.post('/', validationMiddleware.userDetails, authentication, userController.addUser);
+router.put('/:username', validationMiddleware.userDetails, authentication, userController.editUser);
+router.post('/:username/movies/:title', authentication, userController.addFavouriteMovie);
+router.delete('/:username', authentication, userController.deleteUser);
 
 module.exports = router;
