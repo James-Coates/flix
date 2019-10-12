@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import LayoutForm from '../layout-form';
 import SignupForm from '../signup-form';
 
-export default function SignupView(props) {
+export default function SignupView({onLogin}) {
   return (
     <LayoutForm>
       <div className="login__ui">
@@ -12,7 +12,7 @@ export default function SignupView(props) {
           <p>Sign up to theFLIXdb.</p>
         </div>
         <div className="login__form">
-          <SignupForm />
+          <SignupForm onLogin={onLogin} />
         </div>
       </div>
     </LayoutForm>

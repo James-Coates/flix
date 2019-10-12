@@ -30,6 +30,13 @@
   text-transform: uppercase;
 }
 
+.button-fav {
+  min-width: 2rem;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  background-color: $color-secondary;
+}
+
 
 @media screen and (min-width: 512px) {
   .movie-card {

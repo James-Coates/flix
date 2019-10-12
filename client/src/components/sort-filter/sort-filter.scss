@@ -3,10 +3,16 @@
 .sort-filter {
   background-color: $color-main-dark;
   padding: 1rem;
-  margin-right: 5rem;
-  width: calc(20% - 5rem);
+  width: 30%;
   height: 100%;
   color: $color-main-light;
   outline: none;
   border: none;
+}
+
+@media screen and (min-width: 512px) {
+  .sort-filter {
+    width: calc(30% - 5rem);
+    margin-right: 5rem;
+  }
 }

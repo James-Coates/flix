@@ -4,11 +4,12 @@ import { Redirect } from 'react-router-dom';
 import { signup, storeUser } from './signup-methods';
 import { login } from '../login-form/login-methods';
 
-export default function LoginView() {
+export default function LoginView({onLogin}) {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [birthday, setBirthday] = useState('');
+  const [toHome, setToHome] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,9 +18,12 @@ export default function LoginView() {
     const { token, user } = await login(username, password);
     if (user) {
       storeUser(user.username, token);
+      onLogin(user.username);
+      setToHome(true);
     }
   };
 
+  if (toHome) return <Redirect to="/" />;
   return (
     <form onSubmit={handleSubmit}>
       <input

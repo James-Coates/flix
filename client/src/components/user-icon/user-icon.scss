@@ -1,0 +1,43 @@
+@import '../../styles/variables.scss';
+
+.user-icon__button {
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.user-icon__box {
+  height: 4rem;
+  width: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-main;
+  border-radius: 50%;
+  color: $color-main-light;
+  margin-left: 1rem;
+}
+
+.user-icon__img {
+  font-size: 2rem;
+}
+
+@media screen and (min-width: 512px) {
+  .user-icon__button {
+    flex-direction: column;
+    margin-bottom: 3rem;
+  }
+  .user-icon__box {
+    margin-left: 0;
+    height: 6rem;
+    width: 6rem;
+    margin-bottom: 1.5rem;
+  }
+  .user-icon__img {
+    font-size: 3rem;
+  }
+  .user-icon__text {
+    order: 2
+  }
+}

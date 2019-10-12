@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { setMovies } from '../../actions';
+import { setMovies, setUser } from '../../actions';
 
 import { getMovies } from './api';
 
@@ -11,26 +11,28 @@ import MovieList from '../movie-list';
 import LoginView from '../login-view';
 import SignupView from '../signup-view';
 import MovieView from '../movie-view';
+import UserView from '../user-view';
 
 class MainView extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     movies: [],
-  //   };
-  // }
-
+  
   async componentDidMount() {
+    const { setMovies, setUser } = this.props;
     const accessToken = localStorage.getItem('token');
-    const movies = await getMovies(accessToken);
-    // this.setState({ movies });
-    this.props.setMovies(movies);
+    const localUser = localStorage.getItem('user');
+    if (localUser && accessToken) {
+      setUser(localUser);
+      const movies = await getMovies(accessToken);
+      setMovies(movies);
+    }
   }
 
-  // async onLogin(accessToken) {
-  //   const movies = await getMovies(accessToken);
-  //   this.setState({ movies });
-  // }
+  async onLogin(username) {
+    const { setMovies, setUser } = this.props;
+    const accessToken = localStorage.getItem('token');
+    const movies = await getMovies(accessToken);
+    setMovies(movies);
+    setUser(username);
+  }
 
   render() {
     const { movies } = this.props;
@@ -38,12 +40,16 @@ class MainView extends Component {
       <Router>
         <Switch>
           <Route exact path="/">
-            <Layout>
-              <MovieList movies={movies} />
-            </Layout>
+            <MovieList />
           </Route>
-          <Route path="/login" render={() => <LoginView onLogin={(accessToken) => this.onLogin(accessToken)} />} />
-          <Route path="/signup" component={SignupView} />
+          <Route path="/login" render={() => <LoginView onLogin={(username) => this.onLogin(username)} />} />
+          <Route path="/signup" render={() => <SignupView onLogin={(username) => this.onLogin(username)} />} />
+          <Route
+            path="/users/:username"
+            render={({match}) => (
+              <UserView userP={match.params.username} />
+            )}
+          />
           <Route
             path="/movies/:movieTitle"
             render={({ match }) => (
@@ -56,8 +62,4 @@ class MainView extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return { movies: state.movies };
-};
-
-export default connect(mapStateToProps, { setMovies })(MainView);
+export default connect(({ movies, user }) => ({ movies, user }), { setMovies, setUser })(MainView);

@@ -4,7 +4,6 @@ const filterMovies = (movieArray, query) => {
 };
 
 const sortMovies = (movieArray, sortBy) => {
-  console.log(sortBy);
   return movieArray.concat().sort((a, b) => {
     const aCompare = sortBy === 'title' ? a[sortBy] : a[sortBy].name;
     const bCompare = sortBy === 'title' ? b[sortBy] : b[sortBy].name;

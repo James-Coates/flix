@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const login = async (username, password) => {
   try {
-    const url = 'https://theflixdb.herokuapp.com/login';
+    const url = 'http://localhost:3000/login';
     const response = await axios.post(url, {
       username,
       password,

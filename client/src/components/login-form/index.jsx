@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { login, storeUser } from './login-methods';
 
-export default function LoginView({ onLogin }) {
+function LoginForm({ onLogin, user, setUser }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [toHome, setToHome] = useState('');
@@ -13,7 +14,7 @@ export default function LoginView({ onLogin }) {
     const { token, user } = await login(username, password);
     if (user) {
       storeUser(user.username, token);
-      onLogin(token);
+      onLogin(user.username);
       setToHome(true);
     }
   };
@@ -50,3 +51,5 @@ export default function LoginView({ onLogin }) {
     </form>
   );
 }
+
+export default connect(({ user }) => ({ user }))(LoginForm);

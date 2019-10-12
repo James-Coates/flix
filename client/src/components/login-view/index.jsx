@@ -4,7 +4,6 @@ import LayoutForm from '../layout-form';
 import LoginForm from '../login-form';
 
 export default function LoginView({ onLogin }) {
-
   return (
     <LayoutForm>
       <div className="login__ui">
