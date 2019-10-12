@@ -13,6 +13,9 @@
     "url": "git+https://github.com/James-Coates/flix.git"
   },
   "author": "",
+  "engines": {
+    "node": "10.15.3"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/James-Coates/flix/issues"
