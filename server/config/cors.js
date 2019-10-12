@@ -1,4 +1,4 @@
-const whiteList = ['http://localhost', 'https://theflixdb.herokuapp.com/'];
+const whiteList = ['http://localhost:1234', 'https://theflixdb.herokuapp.com/'];
 module.exports = {
   origin: (origin, callback) => {
     if (!origin) return callback(null, true);
