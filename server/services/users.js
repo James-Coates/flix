@@ -10,8 +10,8 @@ module.exports.getUsers = async () => {
 };
 
 module.exports.getUser = async (username) => {
-  const user = await User.find({ username });
-  if (!user || !user.length) {
+  const user = await User.findOne({ username });
+  if (!user) {
     return { status: 404, response: 'No user found' };
   }
   return { status: 200, response: user };
@@ -43,7 +43,7 @@ module.exports.editUser = async (currentUsername, modifiedUser) => {
     return { status: 400, response: `${currentUsername} not found` };
   }
   const userExists = await User.findOne({ username });
-  if (userExists) {
+  if (userExists && userExists.username !== currentUsername) {
     return { status: 400, response: `${userExists.username} already exists` };
   }
   const edittedUser = await User.findOneAndUpdate(
@@ -51,7 +51,6 @@ module.exports.editUser = async (currentUsername, modifiedUser) => {
     {
       $set: {
         username,
-        password,
         email,
         birthday,
       },
