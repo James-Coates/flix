@@ -45,6 +45,7 @@ function LoginForm({ onLogin, user, setUser }) {
         variant="danger"
         type="button"
         className="buttton button-primary"
+        onClick={() => setToHome(true)}
       >
         Cancel
       </button>
