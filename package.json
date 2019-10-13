@@ -4,6 +4,7 @@
   "description": "",
   "main": "server/index.js",
   "scripts": {
+    "develop": "parcel client/public/index.html --cache-dir client/.cache",
     "start": "node server/index.js",
     "build-client": "parcel build client/public/index.html -d client/dist --cache-dir client/.cache",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -62,6 +63,9 @@
     "eslint-plugin-react-hooks": "^1.7.0",
     "sass": "^1.23.0"
   },
+  "browserslist": [
+    "last 1 Chrome version"
+  ],
   "bugs": {
     "url": "https://github.com/James-Coates/flix/issues"
   },
