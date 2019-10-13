@@ -14,7 +14,6 @@ export default function MovieCard({ movie }) {
     const username = localStorage.getItem('user');
     const token = localStorage.getItem('token');
     const response = await addUserFavourite(username, title, token);
-    console.log(response);
   };
 
   return (
