@@ -1,10 +1,10 @@
 import axios from 'axios';
+import { apiUrl } from '../../config';
 
 const signup = async (user) => {
   try {
     const { username, password, email, birthday } = user;
-    const url = 'https://theflixdb.herokuapp.com/users';
-    const response = await axios.post(url, {
+    const response = await axios.post(`${apiUrl}/users`, {
       username,
       password,
       email,
@@ -12,6 +12,7 @@ const signup = async (user) => {
     });
     return response.data;
   } catch (err) {
+    return err;
     console.log(err);
   }
 };
@@ -19,6 +20,6 @@ const signup = async (user) => {
 const storeUser = (user, token) => {
   localStorage.setItem('user', user);
   localStorage.setItem('token', token);
-}
+};
 
 export { signup, storeUser };

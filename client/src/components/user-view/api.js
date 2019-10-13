@@ -1,19 +1,13 @@
 import axios from 'axios';
-import moment from 'moment';
-
-const apiUrl = 'http://localhost:3000/';
+import { apiUrl, setHeaderOptions } from '../../config';
 
 const getUser = async (username, token) => {
   try {
     if (!token) {
       return {};
     }
-    const headerOptions = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const response = await axios.get(`${apiUrl}users/${username}`, headerOptions);
+    const headerOptions = setHeaderOptions(token);
+    const response = await axios.get(`${apiUrl}/users/${username}`, headerOptions);
     const user = response.data;
     if (user) {
       return user;
@@ -27,12 +21,8 @@ const getUser = async (username, token) => {
 const editUser = async (currentUsername, user, token) => {
   try {
     const { username, email, birthday } = user;
-    const headerOptions = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const response = await axios.put(`${apiUrl}users/${currentUsername}`, {
+    const headerOptions = setHeaderOptions(token);
+    const response = await axios.put(`${apiUrl}/users/${currentUsername}`, {
       username,
       email,
       birthday,
