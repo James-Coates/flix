@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.get('/', userController.getUsers);
 router.get('/:username', authentication, userController.getUser);
-router.post('/', validationMiddleware.addUserDetails, authentication, userController.addUser);
+router.post('/', validationMiddleware.addUserDetails, userController.addUser);
 router.put('/:username', validationMiddleware.editUserDetails, authentication, userController.editUser);
 router.post('/:username/movies/:title', authentication, userController.addFavouriteMovie);
 router.delete('/:username', authentication, userController.deleteUser);
