@@ -7,6 +7,7 @@
     "develop": "parcel client/public/index.html --cache-dir client/.cache",
     "start": "node server/index.js",
     "build-client": "parcel build client/public/index.html -d client/dist --cache-dir client/.cache",
+    "docs": "jsdoc server -c jsdoc.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

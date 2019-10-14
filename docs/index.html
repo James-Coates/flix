@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>FLIX</h1>
+<h2>Getting Started</h2>
+<p>some text</p>
+<h2>Endpoints</h2>
+<h3>Basic</h3>
+<table>
+<thead>
+<tr>
+<th>REQUEST</th>
+<th>URL</th>
+<th>HTTP METHOD</th>
+<th>REQUEST DATA FORMAT</th>
+<th>RESPONSE DATA FORMAT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Get a list of all movies to the user</td>
+<td>api/movies</td>
+<td>GET</td>
+<td>-</td>
+<td>* all movies</td>
+</tr>
+<tr>
+<td>Get data about a single movie by title</td>
+<td>api/movies/:title</td>
+<td>GET</td>
+<td>-</td>
+<td>* the single movie requested</td>
+</tr>
+<tr>
+<td>Get data about a genre by name</td>
+<td>api/genres/:name</td>
+<td>GET</td>
+<td>-</td>
+<td>* the single genre requested (description)</td>
+</tr>
+<tr>
+<td>Get data about a director by name</td>
+<td>api/directors/:name</td>
+<td>GET</td>
+<td>-</td>
+<td>* the single genre requested (bio, birth year, death year)</td>
+</tr>
+<tr>
+<td>Add new user</td>
+<td>api/users</td>
+<td>POST</td>
+<td>* the new user details (username, password, email, date of birth)</td>
+<td>* the added user (including unique ID)</td>
+</tr>
+<tr>
+<td>Update user</td>
+<td>api/users/:username</td>
+<td>POST</td>
+<td>* the updated user details (username, password, email, date of birth)</td>
+<td>* the added user (description)</td>
+</tr>
+<tr>
+<td>Add movie to user favourites</td>
+<td>api/users/:username/movies/:movieid</td>
+<td>POST</td>
+<td>-</td>
+<td>* the updated user including favourited movies</td>
+</tr>
+<tr>
+<td>Remove movie from user favourites</td>
+<td>api/users/:username/:movie/:movieid</td>
+<td>DELETE</td>
+<td>-</td>
+<td>* the updated user including favourited movies</td>
+</tr>
+<tr>
+<td>Delete user</td>
+<td>api/users/:username</td>
+<td>DELETE</td>
+<td>-</td>
+<td>A message saying the user has been deleted</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Note: * indicates &quot;<strong>A JSON object containing data of</strong>&quot;</p>
+</blockquote>
+<br>
+<h3>Examples</h3>
+<h4>Get a list of all movies to the user</h4>
+<p><strong>Request:</strong> url/api/movies</p>
+<p><strong>Response:</strong></p>
+<pre class="prettyprint source lang-JSON"><code>[
+    {
+        &quot;genre&quot;: {
+            &quot;name&quot;: &quot;Thriller&quot;,
+            &quot;description&quot;: &quot;Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves excitement and suspense in the audience.&quot;
+        },
+        &quot;director&quot;: {
+            &quot;name&quot;: &quot;Quentin Tarantino&quot;,
+            &quot;bio&quot;: &quot;American director and screenwriter whose films are noted for their stylized violence, razor-sharp dialogue, and fascination with film and pop culture.&quot;,
+            &quot;birth&quot;: &quot;1963-04-27T00:00:00.000Z&quot;
+        },
+        &quot;_id&quot;: &quot;5cf6b85862b239127ce8959a&quot;,
+        &quot;title&quot;: &quot;Reservoir Dogs&quot;,
+        &quot;description&quot;: &quot;When a simple jewelry heist goes horribly wrong, the surviving criminals begin to suspect that one of them is a police informant.&quot;,
+        &quot;imagePath&quot;: &quot;https://bit.ly/2JAgQoB&quot;,
+        &quot;featured&quot;: true
+    },
+    {
+        &quot;genre&quot;: {
+            &quot;name&quot;: &quot;Thriller&quot;,
+            &quot;description&quot;: &quot;Comedy is a genre of film in which the main emphasis is on humour. These films are designed to make the audience laugh through amusement and most often work by exaggerating characteristics for humorous effect. Films in this style traditionally have a happy ending (black comedy being an exception). One of the oldest genres in film, some of the very first silent movies were comedies, as slapstick comedy often relies on visual depictions, without requiring sound. When sound films became more prevalent during the 1920s, comedy films took another swing, as laughter could result from burlesque situations but also dialogue.&quot;
+        },
+        &quot;director&quot;: {
+            &quot;name&quot;: &quot;Steven Spielberg&quot;,
+            &quot;bio&quot;: &quot;Steven Allan Spielberg (born December 18, 1946) is an American filmmaker. He is considered one of the founding pioneers of the New Hollywood era and one of the most popular directors and producers in film history.&quot;,
+            &quot;birth&quot;: &quot;1946-12-18T00:00:00.000Z&quot;
+        },
+        &quot;_id&quot;: &quot;5cf6b85862b239127ce8959f&quot;,
+        &quot;title&quot;: &quot;The Terminal&quot;,
+        &quot;description&quot;: &quot;An Eastern European tourist unexpectedly finds himself stranded in JFK airport, and must take up temporary residence there.&quot;,
+        &quot;imagePath&quot;: &quot;https://bit.ly/2W25xMd&quot;,
+        &quot;featured&quot;: false
+    }
+]
+</code></pre>
+<h4>Get data about a single movie by title</h4>
+<p><strong>Request:</strong> url/api/movies/:title</p>
+<p><strong>Response:</strong></p>
+<pre class="prettyprint source lang-JSON"><code>{
+    &quot;genre&quot;: {
+        &quot;name&quot;: &quot;biography&quot;,
+        &quot;description&quot;: &quot;A biographical film, or biopic (abbreviation for biographical motion picture), is a film that dramatizes the life of a non-fictional or historically-based person or people. Such films show the life of a historical person and the central character's real name is used. They differ from films \&quot;based on a true story\&quot; or \&quot;historical drama films\&quot; in that they attempt to comprehensively tell a single person's life story or at least the most historically important years of their lives.&quot;
+    },
+    &quot;director&quot;: {
+        &quot;name&quot;: &quot;Martin Scorsese&quot;,
+        &quot;bio&quot;: &quot;Martin Charles Scorsese (born November 17, 1942) is an American and naturalized-Italian filmmaker and historian, whose career spans more than 50 years. Scorsese's body of work addresses such themes as Italian-American identity (most notably Sicilian), Roman Catholic concepts of guilt and redemption, faith, machismo, modern crime, and gang conflict. Many of his films are also known for their depiction of violence and liberal use of profanity.&quot;,
+        &quot;birth&quot;: &quot;1942-11-17T00:00:00.000Z&quot;
+    },
+    &quot;_id&quot;: &quot;5cf6b85862b239127ce8959b&quot;,
+    &quot;title&quot;: &quot;The Aviator&quot;,
+    &quot;description&quot;: &quot;A biopic depicting the early years of legendary director and aviator Howard Hughes' career from the late 1920s to the mid 1940s.&quot;,
+    &quot;imagePath&quot;: &quot;https://bit.ly/2W0pJOF&quot;,
+    &quot;featured&quot;: false
+}
+</code></pre>
+<h4>Get data about a genre by name</h4>
+<p><strong>Request:</strong> url/api/genres/:name</p>
+<p><strong>Response:</strong></p>
+<pre class="prettyprint source lang-JSON"><code>{
+    &quot;name&quot;: &quot;Thriller&quot;,
+    &quot;description&quot;: &quot;Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves excitement and suspense in the audience.&quot;
+}
+</code></pre>
+<h4>Get data about a director by name</h4>
+<p><strong>Request:</strong> url/api/directors/:name</p>
+<p><strong>Response:</strong></p>
+<pre class="prettyprint source lang-JSON"><code>{
+    &quot;name&quot;: &quot;Steven Spielberg&quot;,
+    &quot;bio&quot;: &quot;Steven Allan Spielberg (born December 18, 1946) is an American filmmaker. He is considered one of the founding pioneers of the New Hollywood era and one of the most popular directors and producers in film history.&quot;,
+    &quot;birth&quot;: &quot;1946-12-18T00:00:00.000Z&quot;
+}
+</code></pre>
+<h4>Add new user</h4>
+<p><strong>Request:</strong> POST | url/api/users/</p>
+<p>Request Body:</p>
+<pre class="prettyprint source lang-JSON"><code>{
+    &quot;username&quot;: &quot;JohnDoe&quot;,
+    &quot;password&quot;: &quot;securepassword&quot;,
+    &quot;email&quot;: &quot;JohnD@email.com&quot;,
+    &quot;birthday&quot;: &quot;13/07/1987&quot;
+}
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre class="prettyprint source lang-JSON"><code>{
+    &quot;username&quot;: &quot;JohnDoe&quot;,
+    &quot;password&quot;: &quot;securepassword&quot;,
+    &quot;email&quot;: &quot;JohnD@email.com&quot;,
+    &quot;birthday&quot;: &quot;13/07/1987&quot;
+}
+</code></pre>
+<h4>Update user</h4>
+<p><strong>Request:</strong> PUT | url/api/users/</p>
+<p>Request Body:</p>
+<pre class="prettyprint source lang-JSON"><code>{
+    &quot;username&quot;: &quot;JohnDoeUpdated&quot;,
+    &quot;password&quot;: &quot;securepassword&quot;,
+    &quot;email&quot;: &quot;JohnD@email.com&quot;,
+    &quot;birthday&quot;: &quot;13/07/1987&quot;
+}
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre class="prettyprint source lang-JSON"><code>{
+    &quot;username&quot;: &quot;JohnDoeUpdated&quot;,
+    &quot;password&quot;: &quot;securepassword&quot;,
+    &quot;email&quot;: &quot;JohnD@email.com&quot;,
+    &quot;birthday&quot;: &quot;13/07/1987&quot;
+}
+</code></pre>
+<h4>Add movie to user favourites</h4>
+<p><strong>Request:</strong> POST | /url/api/users/JohnDoe/movies/Pulp%20Fiction</p>
+<p>Request Body:</p>
+<pre class="prettyprint source lang-JSON"><code>{
+    &quot;username&quot;: &quot;JohnDoeUpdated&quot;,
+    &quot;password&quot;: &quot;securepassword&quot;,
+    &quot;email&quot;: &quot;JohnD@email.com&quot;,
+    &quot;birthday&quot;: &quot;13/07/1987&quot;
+}
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre class="prettyprint source lang-JSON"><code>{
+    &quot;favouriteMovies&quot;: [
+        &quot;5cf6b85862b239127ce8959c&quot;,
+        &quot;5cf6b85862b239127ce8959e&quot;,
+        &quot;5cf6b85862b239127ce8959b&quot;,
+        &quot;5cf6b85862b239127ce89598&quot;
+    ],
+    &quot;_id&quot;: &quot;5da1c9ed442eff0017f0a4eb&quot;,
+    &quot;username&quot;: &quot;JohnDoeUpdated&quot;,
+    &quot;password&quot;: &quot;securepassword&quot;,
+    &quot;email&quot;: &quot;JohnD@email.com&quot;,
+    &quot;birthday&quot;: &quot;1987-07-13T00:00:00.000Z&quot;,
+    &quot;__v&quot;: 0
+}
+</code></pre>
+<h4>Remove movie from user favourites</h4>
+<p><strong>Request:</strong> DELETE | /url/api/users/JohnDoe/movies/Pulp%20Fiction</p>
+<p><strong>Response:</strong></p>
+<pre class="prettyprint source lang-JSON"><code>{
+    &quot;favouriteMovies&quot;: [
+        &quot;5cf6b85862b239127ce8959e&quot;,
+        &quot;5cf6b85862b239127ce8959b&quot;,
+        &quot;5cf6b85862b239127ce89598&quot;
+    ],
+    &quot;_id&quot;: &quot;5da1c9ed442eff0017f0a4eb&quot;,
+    &quot;username&quot;: &quot;JohnDoeUpdated&quot;,
+    &quot;password&quot;: &quot;securepassword&quot;,
+    &quot;email&quot;: &quot;JohnD@email.com&quot;,
+    &quot;birthday&quot;: &quot;1987-07-13T00:00:00.000Z&quot;,
+    &quot;__v&quot;: 0
+}
+</code></pre>
+<h4>Delete user</h4>
+<p><strong>Request:</strong> DELETE | url/api/users/JohnDoeUpdated</p>
+<p><strong>Response:</strong></p>
+<pre class="prettyprint source lang-JSON"><code>{
+    &quot;username&quot;: &quot;JohnDoeUpdated&quot;,
+    &quot;password&quot;: &quot;securepassword&quot;,
+    &quot;email&quot;: &quot;JohnD@email.com&quot;,
+    &quot;birthday&quot;: &quot;13/07/1987&quot;
+}
+</code></pre></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Oct 14 2019 16:35:02 GMT+0100 (British Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
