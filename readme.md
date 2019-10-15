@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-some text
+A full stack movie database application built on NodeJS and React.
 
 ## Endpoints
 
